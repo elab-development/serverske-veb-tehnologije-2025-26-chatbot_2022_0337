@@ -3,6 +3,9 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ChatbotController;
+use App\Http\Controllers\Api\KnowledgeItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
         ]);
     });
 });
+
+Route::apiResource('categories', CategoryController::class);
+Route::apiResource('knowledge-items', KnowledgeItemController::class);
+Route::post('chatbot/ask', [ChatbotController::class, 'ask']);

@@ -17,39 +17,39 @@ class KnowledgeItemSeeder extends Seeder
     {
         $itemsByCategory = [
             'Moodle' => [
-                ['Moodle login problem', 'What should I do if I cannot log in to Moodle?', 'Check your student email credentials first, then reset your password or contact Student Service if the problem continues.', 5],
-                ['Missing Moodle course', 'Why is one of my courses not visible on Moodle?', 'A course may be hidden until the teacher enables it. Contact the course teacher or Student Service if the course should already be available.', 4],
-                ['Submitting Moodle assignment', 'How do I submit an assignment on Moodle?', 'Open the course page, choose the assignment activity, upload the required file, and confirm the submission before the deadline.', 4],
-                ['Moodle password reset', 'How can I reset my Moodle password?', 'Use the password reset option connected to your student account or request help from Student Service.', 3],
-                ['Course materials on Moodle', 'Where can I find lecture materials on Moodle?', 'Lecture materials are usually available inside the course section after the teacher uploads them.', 3],
+                ['Problem sa prijavom na Moodle', 'Šta da uradim ako ne mogu da se prijavim na Moodle?', 'Prvo provjerite korisničko ime i lozinku za studentski nalog. Ako problem i dalje postoji, resetujte lozinku ili se obratite Studentskoj službi.', 5],
+                ['Kurs nije vidljiv na Moodle-u', 'Zašto ne vidim jedan od svojih kurseva na Moodle-u?', 'Kurs može biti sakriven dok ga predmetni nastavnik ne aktivira. Ako kurs treba da bude dostupan, obratite se nastavniku ili Studentskoj službi.', 4],
+                ['Predaja zadatka na Moodle-u', 'Kako da predam zadatak preko Moodle-a?', 'Otvorite stranicu predmeta, izaberite aktivnost za predaju zadatka, postavite traženi fajl i potvrdite predaju prije isteka roka.', 4],
+                ['Resetovanje Moodle lozinke', 'Kako mogu da resetujem lozinku za Moodle?', 'Koristite opciju za resetovanje lozinke povezanu sa studentskim nalogom ili zatražite pomoć od Studentske službe.', 3],
+                ['Materijali za nastavu na Moodle-u', 'Gdje mogu da pronađem materijale za predavanja na Moodle-u?', 'Materijali su obično dostupni u okviru stranice predmeta nakon što ih nastavnik postavi.', 3],
             ],
-            'Exams' => [
-                ['Exam registration deadline', 'When can I register an exam?', 'Exam registration is available during the official registration period published before each exam session.', 5],
-                ['Cancel exam registration', 'Can I cancel my exam registration?', 'Exam registration can usually be cancelled before the cancellation deadline in the student portal.', 4],
-                ['Exam results', 'Where can I see my exam results?', 'Exam results are published through the student portal, Moodle, or by the course teacher.', 4],
-                ['Exam schedule', 'Where can I find the exam schedule?', 'The exam schedule is published on the faculty website or student portal before the exam session.', 5],
-                ['Exam rules', 'What documents do I need for an exam?', 'Bring a valid student ID or another official identification document required by faculty rules.', 3],
+            'Ispiti' => [
+                ['Rok za prijavu ispita', 'Kada mogu da prijavim ispit?', 'Ispit se prijavljuje u zvaničnom roku za prijavu koji se objavljuje prije svakog ispitnog roka.', 5],
+                ['Odjava ispita', 'Da li mogu da odjavim prijavljeni ispit?', 'Ispit se najčešće može odjaviti preko studentskog portala do roka koji je predviđen za odjavu.', 4],
+                ['Rezultati ispita', 'Gdje mogu da vidim rezultate ispita?', 'Rezultati ispita se objavljuju na studentskom portalu, na Moodle-u ili ih objavljuje predmetni nastavnik.', 4],
+                ['Raspored ispita', 'Gdje mogu da pronađem raspored ispita?', 'Raspored ispita se objavljuje na sajtu fakulteta ili studentskom portalu prije početka ispitnog roka.', 5],
+                ['Pravila za polaganje ispita', 'Koja dokumenta su mi potrebna za izlazak na ispit?', 'Na ispit ponesite indeks ili drugi važeći identifikacioni dokument koji je propisan pravilima fakulteta.', 3],
             ],
-            'Tuition' => [
-                ['Tuition payment confirmation', 'How can I check whether my tuition payment was recorded?', 'You can check payment status through the student portal or ask Student Service to verify the payment.', 5],
-                ['Tuition installments', 'Can I pay tuition in installments?', 'Tuition installment rules depend on the official faculty decision for the academic year.', 4],
-                ['Payment instructions', 'Where can I find tuition payment instructions?', 'Payment instructions are available on the faculty website or from Student Service.', 4],
-                ['Late tuition payment', 'What happens if I pay tuition late?', 'Late payment may affect student obligations, so contact Student Service as soon as possible.', 3],
-                ['Tuition invoice', 'Can I get proof of tuition payment?', 'Yes, Student Service can confirm payment status or provide instructions for payment proof.', 3],
+            'Studentska služba' => [
+                ['Zahtjev za potvrdu o studiranju', 'Kako mogu da dobijem potvrdu o studiranju?', 'Potrebno je da podnesete zahtjev Studentskoj službi i navedete svrhu za koju vam je potvrda potrebna.', 5],
+                ['Promjena ličnih podataka', 'Kako mogu da promijenim lične podatke u evidenciji?', 'Obratite se Studentskoj službi i dostavite važeću dokumentaciju kojom se potvrđuje tražena promjena.', 4],
+                ['Studentska evidencija', 'Gdje mogu da dobijem informacije o svom studentskom dosijeu?', 'Studentska služba daje informacije o evidenciji, statusu studenta, upisu i službenim dokumentima.', 4],
+                ['Preuzimanje dokumenata', 'Kada mogu da preuzmem tražena dokumenta?', 'Preuzimanje dokumenata zavisi od radnog vremena Studentske službe i vremena potrebnog za obradu zahtjeva.', 3],
+                ['Provjera statusa studenta', 'Kako mogu da provjerim svoj status studenta?', 'Status studenta možete provjeriti preko studentskog portala ili direktno u Studentskoj službi.', 5],
             ],
-            'Student Service' => [
-                ['Student certificate request', 'How do I request a student status certificate?', 'Submit a request to Student Service and include the purpose of the certificate.', 5],
-                ['Change personal data', 'How can I update my personal data?', 'Contact Student Service with valid documentation for the requested data change.', 4],
-                ['Student record book', 'Where can I get information about my student record?', 'Student Service provides information about records, enrollment status, and official documents.', 4],
-                ['Document pickup', 'When can I pick up requested documents?', 'Document pickup depends on Student Service working hours and processing time.', 3],
-                ['Enrollment verification', 'How can I verify my enrollment status?', 'You can verify enrollment status through the student portal or directly with Student Service.', 5],
+            'Školarina' => [
+                ['Provjera uplate školarine', 'Kako mogu da provjerim da li je uplata školarine evidentirana?', 'Status uplate možete provjeriti preko studentskog portala ili zatražiti provjeru od Studentske službe.', 5],
+                ['Plaćanje školarine u ratama', 'Da li školarinu mogu da platim u ratama?', 'Mogućnost plaćanja u ratama zavisi od zvanične odluke fakulteta za tekuću akademsku godinu.', 4],
+                ['Instrukcije za uplatu školarine', 'Gdje mogu da pronađem instrukcije za uplatu školarine?', 'Instrukcije za uplatu dostupne su na sajtu fakulteta ili ih možete dobiti u Studentskoj službi.', 4],
+                ['Kašnjenje sa uplatom školarine', 'Šta se dešava ako zakasnim sa uplatom školarine?', 'Kašnjenje može uticati na studentske obaveze, zato je potrebno da se što prije obratite Studentskoj službi.', 3],
+                ['Potvrda o plaćenoj školarini', 'Da li mogu da dobijem potvrdu o plaćenoj školarini?', 'Da. Studentska služba može potvrditi status uplate ili dati uputstvo za dobijanje potvrde o plaćanju.', 3],
             ],
-            'Schedule' => [
-                ['Class schedule changes', 'Where can I see changes in the class schedule?', 'Schedule changes are published on the faculty website, notice board, or official student portal.', 5],
-                ['Consultation hours', 'Where can I find professor consultation hours?', 'Consultation hours are usually listed on the faculty website or course page.', 4],
-                ['Classroom information', 'How do I know which classroom my class is in?', 'Classroom information is included in the official class schedule.', 4],
-                ['Online classes', 'How will I know if a class is online?', 'Online class information is announced through Moodle, email, or the official schedule.', 3],
-                ['Schedule conflicts', 'What should I do if two classes overlap?', 'Report schedule conflicts to Student Service or the relevant study program coordinator.', 3],
+            'Raspored' => [
+                ['Izmjene rasporeda nastave', 'Gdje mogu da vidim izmjene rasporeda nastave?', 'Izmjene rasporeda objavljuju se na sajtu fakulteta, oglasnoj tabli ili zvaničnom studentskom portalu.', 5],
+                ['Termini konsultacija', 'Gdje mogu da pronađem termine konsultacija kod profesora?', 'Termini konsultacija se najčešće nalaze na sajtu fakulteta ili na stranici predmeta.', 4],
+                ['Informacije o učionici', 'Kako da znam u kojoj učionici imam nastavu?', 'Informacija o učionici nalazi se u zvaničnom rasporedu nastave.', 4],
+                ['Online nastava', 'Kako ću znati da li se nastava održava online?', 'Informacije o online nastavi objavljuju se preko Moodle-a, elektronske pošte ili zvaničnog rasporeda.', 3],
+                ['Preklapanje termina nastave', 'Šta da uradim ako mi se preklapaju termini nastave?', 'Preklapanje termina prijavite Studentskoj službi ili koordinatoru odgovarajućeg studijskog programa.', 3],
             ],
         ];
 

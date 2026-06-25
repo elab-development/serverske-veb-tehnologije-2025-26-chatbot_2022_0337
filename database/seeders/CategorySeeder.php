@@ -15,11 +15,11 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            'Moodle' => 'Questions about Moodle access, courses, materials, and assignments.',
-            'Exams' => 'Questions about exam registration, dates, results, and exam rules.',
-            'Tuition' => 'Questions about tuition fees, payments, installments, and confirmations.',
-            'Student Service' => 'Questions about certificates, documents, requests, and student records.',
-            'Schedule' => 'Questions about classes, timetable changes, rooms, and consultations.',
+            'Moodle' => 'Pitanja o pristupu Moodle platformi, kursevima, materijalima i zadacima.',
+            'Ispiti' => 'Pitanja o prijavi ispita, terminima, rezultatima i pravilima polaganja.',
+            'Studentska služba' => 'Pitanja o potvrdama, dokumentima, zahtjevima i studentskoj evidenciji.',
+            'Školarina' => 'Pitanja o školarini, uplatama, ratama i potvrdama o plaćanju.',
+            'Raspored' => 'Pitanja o rasporedu nastave, izmjenama termina, učionicama i konsultacijama.',
         ];
 
         foreach ($categories as $name => $description) {
