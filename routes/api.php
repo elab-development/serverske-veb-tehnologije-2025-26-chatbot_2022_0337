@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ChatbotController;
+use App\Http\Controllers\Api\KnowledgeItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'me']);
+
+    Route::middleware('role:admin')->get('/admin/check', function (Request $request) {
+        return response()->json([
+            'message' => 'Korisnik ima admin pristup.',
+            'user' => $request->user(),
+        ]);
+    });
 });
+
+Route::apiResource('categories', CategoryController::class)
+    ->only(['index', 'show']);
+Route::apiResource('knowledge-items', KnowledgeItemController::class)
+    ->only(['index', 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('categories', CategoryController::class)
+        ->only(['store', 'update', 'destroy']);
+    Route::apiResource('knowledge-items', KnowledgeItemController::class)
+        ->only(['store', 'update', 'destroy']);
+});
+
+Route::post('chatbot/ask', [ChatbotController::class, 'ask']);
