@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
@@ -17,34 +18,40 @@ class CategoryController extends Controller
             'per_page' => ['nullable', 'integer', 'min:1', 'max:100'],
         ]);
 
-        $categories = Category::query()
-            ->withCount('knowledgeItems')
-            ->when($validated['search'] ?? null, function ($query, string $search) {
-                $query->where(function ($query) use ($search) {
-                    $query->where('name', 'like', "%{$search}%")
-                        ->orWhere('description', 'like', "%{$search}%");
-                });
-            })
-            ->orderBy('name')
-            ->paginate($validated['per_page'] ?? 15);
+        $cacheKey = 'categories.index.'.md5(json_encode($request->query()));
 
-        return response()->json([
-            'data' => CategoryResource::collection($categories->items()),
-            'meta' => [
-                'current_page' => $categories->currentPage(),
-                'from' => $categories->firstItem(),
-                'last_page' => $categories->lastPage(),
-                'per_page' => $categories->perPage(),
-                'to' => $categories->lastItem(),
-                'total' => $categories->total(),
-            ],
-            'links' => [
-                'first' => $categories->url(1),
-                'last' => $categories->url($categories->lastPage()),
-                'prev' => $categories->previousPageUrl(),
-                'next' => $categories->nextPageUrl(),
-            ],
-        ]);
+        $response = Cache::remember($cacheKey, now()->addMinutes(10), function () use ($validated) {
+            $categories = Category::query()
+                ->withCount('knowledgeItems')
+                ->when($validated['search'] ?? null, function ($query, string $search) {
+                    $query->where(function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%")
+                            ->orWhere('description', 'like', "%{$search}%");
+                    });
+                })
+                ->orderBy('name')
+                ->paginate($validated['per_page'] ?? 15);
+
+            return [
+                'data' => CategoryResource::collection($categories->items())->resolve(),
+                'meta' => [
+                    'current_page' => $categories->currentPage(),
+                    'from' => $categories->firstItem(),
+                    'last_page' => $categories->lastPage(),
+                    'per_page' => $categories->perPage(),
+                    'to' => $categories->lastItem(),
+                    'total' => $categories->total(),
+                ],
+                'links' => [
+                    'first' => $categories->url(1),
+                    'last' => $categories->url($categories->lastPage()),
+                    'prev' => $categories->previousPageUrl(),
+                    'next' => $categories->nextPageUrl(),
+                ],
+            ];
+        });
+
+        return response()->json($response);
     }
 
     public function show(Category $category)
@@ -64,6 +71,8 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::create($validated);
+
+        Cache::flush();
 
         return response()->json([
             'message' => 'Category created successfully.',
@@ -86,6 +95,8 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
+        Cache::flush();
+
         return response()->json([
             'message' => 'Category updated successfully.',
             'data' => new CategoryResource($category),
@@ -95,6 +106,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
+        Cache::flush();
 
         return response()->json([
             'message' => 'Category deleted successfully.',
