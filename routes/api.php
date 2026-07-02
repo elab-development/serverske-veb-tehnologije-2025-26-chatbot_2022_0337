@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ChatbotController;
 use App\Http\Controllers\Api\ExportController;
 use App\Http\Controllers\Api\KnowledgeItemController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,9 @@ Route::apiResource('knowledge-items', KnowledgeItemController::class)
 
 Route::middleware(['auth:sanctum', 'role:admin,moderator'])->group(function () {
     Route::get('/export/knowledge-items', [ExportController::class, 'knowledgeItems']);
+    Route::get('/statistics/overview', [StatisticsController::class, 'overview']);
+    Route::get('/statistics/categories', [StatisticsController::class, 'categories']);
+    Route::get('/statistics/chat-messages', [StatisticsController::class, 'chatMessages']);
 
     Route::apiResource('categories', CategoryController::class)
         ->only(['store', 'update', 'destroy']);
